@@ -82,14 +82,25 @@ function createInput(type, manID, placeholder, step, value, readonly) {
         for (let input of inputs) input.style.background = null;
     });
 
-    // Удаление редактируемых ячеек, если все данные удалены внутри обеих manid
+    // Редактирование заполненых инпутов
     if (manID !== 'newincome' && manID !== 'newexpenses' && input.readOnly !== true) {
         input.addEventListener('blur', (e) => {
             let inputs = document.querySelectorAll('input[manid="' + manID + '"]');
-            if(inputs[0].value === '' && inputs[1].value === '') {
+            console.log(inputs);
+
+            // Удаление редактируемых ячеек, если все данные удалены внутри обеих manid в первом условии
+            if (inputs[0].value === '' && inputs[1].value === '') {
                 for (let input of inputs) input.remove();
                 mandatory.forEach( (item, index, object) => {
                     if (item.manID === manID) object.splice(index, 1);
+                })
+            } else if (e.target.type === 'text'){
+                mandatory.forEach( (item) => {
+                    if (item.manID === manID) item.name = e.target.value;
+                })
+            } else {
+                mandatory.forEach( (item) => {
+                    if (item.manID === manID) item.value = parseFloat(e.target.value);
                 })
             }
         });
