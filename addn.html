@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900&display=swap&subset=cyrillic" rel="stylesheet">
+    <title>Add ex money</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <input id="menu" type="checkbox" >
+            <label for="menu"></label>
+            <div class="logo">
+                <a href="#"></a>
+                <form action="#" method="post">
+                    <input type="number" placeholder="100" step="0.01">
+                    <input type="button" value=">">
+                    <label>-</label>
+                </form>
+            </div>
+            <ul class="nav">
+                <li>Nickname</li>
+                <li><a href="#">Выход</a></li>
+            </ul>
+        </header>
+        <section class="mandatory">
+            <div class="income">
+                <h3>Доход</h3>
+
+            </div>
+            <div class="expenses">
+                <h3>Обязательные расходы</h3>
+
+            </div>
+        </section>
+        <section>
+            <table>
+                <tr>
+                    <td>Дата</td>
+                    <td>Траты</td>
+                    <td>Бюджет на день</td>
+                    <td>Сальдо</td>
+                </tr>
+                <tr>
+                    <td>2015-09-01</td>
+                    <td>1000</td>
+                    <td>533</td>
+                    <td>-467</td>
+                </tr>
+                <tr>
+                    <td>2015-09-02</td>
+                    <td>390</td>
+                    <td>67</td>
+                    <td>-323</td>
+                </tr>
+                <tr>
+                    <td>2015-09-03</td>
+                    <td>1000</td>
+                    <td>210</td>
+                    <td>-790</td>
+                </tr>
+                <tr>
+                    <td>2015-09-04</td>
+                    <td>0</td>
+                    <td>-257</td>
+                    <td>-257</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <script src="js/exm.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Add page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">Budget</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Добавить<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Доход</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Обязательные расходы</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row col-12 add-money">
+            <form class="form-inline col-12">
+                <div class="form-group col-10 mb-2">
+                    <div class="col-2">
+
+                    </div>
+                    <input type="number" class="form-control col-12" id="expense" placeholder="Сумма">
+                </div>
+                <button type="submit" class="btn btn-success mb-2 col-2">Добавить</button>
+            </form>
+        </div>
+        <div class="row col-12">
+            <table class="table col-12">
+                <thead>
+                <tr>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Траты</th>
+                    <th scope="col">Бюджет на день</th>
+                    <th scope="col">Сальдо</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">2015-09-01</th>
+                    <td>1,000</td>
+                    <td>533</td>
+                    <td>-467</td>
+                </tr>
+                <tr>
+                    <th scope="row">2015-09-02</th>
+                    <td>1,500</td>
+                    <td>600</td>
+                    <td>67</td>
+                </tr>
+                <tr>
+                    <th scope="row">2015-09-03</th>
+                    <td>850</td>
+                    <td>-300</td>
+                    <td>-833</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<form action="#" method="post">
+    <input type="text" placeholder="+ Описание дохода" value="Зарплата">
+    <input type="number" placeholder="+ Сумма дохода" step="0.01" value="55000">
+    <input type="text" placeholder="+ Описание дохода" value="Родители на ДР">
+    <input type="number" placeholder="+ Сумма дохода" step="0.01" value="5000">
+    <input type="text" placeholder="+ Описание дохода" value="">
+    <input type="number" placeholder="+ Сумма дохода" step="0.01" value="">
+    <input type="text" placeholder="+ Описание дохода" value="Итого" readonly>
+    <input type="number" placeholder="+ Сумма дохода" step="0.01" value="60000" readonly>
+</form>
+
+<form action="#" method="post">
+    <input type="text" placeholder="+ Описание расхода" value="Аренда">
+    <input type="number" placeholder="+ Сумма расхода" step="0.01" value="30000">
+    <input type="text" placeholder="+ Описание расхода" value="ЖКХ">
+    <input type="number" placeholder="+ Сумма расхода" step="0.01" value="2000">
+    <input type="text" placeholder="+ Описание расхода" value="Транспорт">
+    <input type="number" placeholder="+ Сумма расхода" step="0.01" value="3000">
+    <input type="text" placeholder="+ Описание расхода" value="">
+    <input type="number" placeholder="+ Сумма расхода" step="0.01" value="">
+    <input type="text" placeholder="+ Описание расхода" value="Откладываем (в %)" readonly>
+    <input type="number" placeholder="%" step="0.01" value="15" max="100">
+    <input type="text" placeholder="+ Описание расхода" value="Итого" readonly>
+    <input type="number" placeholder="+ Сумма расхода" step="0.01" value="44000" readonly>
+</form>
