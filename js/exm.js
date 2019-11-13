@@ -33,8 +33,7 @@ let mandatory = [
 
 
 function drawMandatory() {
-    let types = ['income', 'expenses'];
-    for (let type of types) {
+    for (let type of getAllTypesMandatory(mandatory)) {
         let mandBlock = document.getElementsByClassName(type)[0],
             form = document.createElement('form'),
             sum = 0,
@@ -72,19 +71,39 @@ function createInput(type, manID, placeholder, step, value, readonly) {
     if (step) input.setAttribute('step', step);
     input.setAttribute('value',value);
 
-    input.addEventListener('mouseover', (e) => {
-        let id = e.target.attributes.manID.value;
-        let inputs = document.querySelectorAll('input[manid="'+id+'"]');
+    // Стиль выделения ячеек с одинаковым manid
+    input.addEventListener('mouseover', () => {
+        let inputs = document.querySelectorAll('input[manid="'+manID+'"]');
         for (let input of inputs) input.style.background = '#c0ffb3';
     });
 
-    input.addEventListener('mouseout', (e) => {
-        let id = e.target.attributes.manID.value;
-        let inputs = document.querySelectorAll('input[manid="'+id+'"]');
+    input.addEventListener('mouseout', () => {
+        let inputs = document.querySelectorAll('input[manid="'+manID+'"]');
         for (let input of inputs) input.style.background = null;
     });
 
+    // Удаление редактируемых ячеек, если все данные удалены внутри обеих manid
+    if (manID !== 'newincome' && manID !== 'newexpenses' && input.readOnly !== true) {
+        input.addEventListener('blur', (e) => {
+            let inputs = document.querySelectorAll('input[manid="' + manID + '"]');
+            if(inputs[0].value === '' && inputs[1].value === '') {
+                for (let input of inputs) input.remove();
+                mandatory.forEach( (item, index, object) => {
+                    if (item.manID === manID) object.splice(index, 1);
+                })
+            }
+        });
+    }
+
     return input;
+}
+
+function getAllTypesMandatory(arr) {
+    let types = [];
+    for (let i = 0; i < arr.length; i++){
+        if (!types.includes(arr[i].type)) types.push(arr[i].type);
+    }
+    return types;
 }
 
 drawMandatory();
