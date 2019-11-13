@@ -82,8 +82,8 @@ function createInput(type, manID, placeholder, step, value, readonly) {
         for (let input of inputs) input.style.background = null;
     });
 
-    // Редактирование заполненых инпутов
     if (manID !== 'newincome' && manID !== 'newexpenses' && input.readOnly !== true) {
+        // Редактирование заполненых редактируемых инпутов
         input.addEventListener('blur', (e) => {
             let inputs = document.querySelectorAll('input[manid="' + manID + '"]');
             console.log(inputs);
@@ -100,10 +100,24 @@ function createInput(type, manID, placeholder, step, value, readonly) {
                 })
             } else {
                 mandatory.forEach( (item) => {
-                    if (item.manID === manID) item.value = parseFloat(e.target.value);
+                    if (item.manID === manID) {
+                        item.value = parseFloat(e.target.value);
+                        calculateTotalAmount(item.type);
+                    }
                 })
             }
         });
+
+
+
+        // Обработка нажатия Enter у заполненых инпутов
+        input.addEventListener("keypress", (e) => {
+            switch (e.keyCode) {
+                case 13:
+                    console.log(e);
+                    break;
+            }
+        })
     }
 
     return input;
@@ -115,6 +129,15 @@ function getAllTypesMandatory(arr) {
         if (!types.includes(arr[i].type)) types.push(arr[i].type);
     }
     return types;
+}
+
+function calculateTotalAmount(type) {
+    let sum = 0,
+        input = document.querySelector('[type="number"][manid="' + type + '"]');
+    mandatory.forEach((item) => {
+        if (item.type === type) sum += item.value
+    });
+    input.value = sum;
 }
 
 drawMandatory();
