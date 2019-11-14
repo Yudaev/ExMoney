@@ -82,45 +82,71 @@ function createInput(type, manID, placeholder, step, value, readonly) {
         for (let input of inputs) input.style.background = null;
     });
 
-    if (manID !== 'newincome' && manID !== 'newexpenses' && input.readOnly !== true) {
+    if (input.readOnly !== true) {
         // Редактирование заполненых редактируемых инпутов
-        input.addEventListener('blur', (e) => {
-            let inputs = document.querySelectorAll('input[manid="' + manID + '"]');
-            console.log(inputs);
+        // input - применяет изменения на каждый новый символ в инпуте
+        // blur - применяет когда теряется фокус с поля
+        if (manID !== 'newincome' && manID !== 'newexpenses'){
+                input.addEventListener('blur', (e) => {
+                let inputs = document.querySelectorAll('input[manid="' + manID + '"]');
 
-            // Удаление редактируемых ячеек, если все данные удалены внутри обеих manid в первом условии
-            if (inputs[0].value === '' && inputs[1].value === '') {
-                for (let input of inputs) input.remove();
-                mandatory.forEach( (item, index, object) => {
-                    if (item.manID === manID) object.splice(index, 1);
-                })
-            } else if (e.target.type === 'text'){
-                mandatory.forEach( (item) => {
-                    if (item.manID === manID) item.name = e.target.value;
-                })
-            } else {
-                mandatory.forEach( (item) => {
-                    if (item.manID === manID) {
-                        item.value = parseFloat(e.target.value);
-                        calculateTotalAmount(item.type);
-                    }
-                })
-            }
-        });
+                // Удаление редактируемых ячеек, если все данные удалены внутри обеих manid в первом условии
+                if (inputs[0].value === '' && inputs[1].value === '') {
+                    for (let input of inputs) input.remove(); // inputs удаляются только когда потерян фокус
+                    mandatory.forEach( (item, index, object) => {
+                        if (item.manID === manID) object.splice(index, 1);
+                        calculateTotalAmount(item.type)
+                    })
+                } else if (e.target.type === 'text'){
+                    mandatory.forEach( (item) => {
+                        if (item.manID === manID) item.name = e.target.value;
+                    })
+                } else {
+                    mandatory.forEach( (item) => {
+                        if (item.manID === manID) {
+                            console.log(isNaN(parseFloat(e.target.value)));
+                            item.value = isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value);
+                            calculateTotalAmount(item.type);
+                        }
+                    })
+                }
+            });
+        }
 
-
-
-        // Обработка нажатия Enter у заполненых инпутов
+        // Обработка нажатий кнопок в инпутах
         input.addEventListener("keypress", (e) => {
+            console.log(e);
             switch (e.keyCode) {
-                case 13:
-                    console.log(e);
+                case 13:  // Обработка нажатий Enter
+                    if(e.target.attributes.type.value === 'text') {
+                        let input = document.querySelector('input[manid="' + manID + '"][type="number"]');
+                        input.focus();
+                    } else if(e.target.attributes.type.value === 'number' &&
+                              !getAllTypesMandatory(mandatory).includes(e.target.attributes.manid.value.replace('new', ''))) {
+                        mandatory.forEach( (item) => {
+                            if (item.manID === manID) {
+                                let input = document.querySelector('input[manid="new' + item.type + '"][type="text"]');
+                                input.focus();
+                            }
+                        });
+                    } else {
+                        console.log(123);
+                    }
                     break;
             }
         })
     }
 
     return input;
+}
+
+function checkavAilabilityNamesAndValues(arr, manID) {
+    arr.forEach( (item) => {
+        if (item.manID === manID) {
+            if (item.value === 0 && item.name === '') return false;
+        }
+    });
+    return true;
 }
 
 function getAllTypesMandatory(arr) {
