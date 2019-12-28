@@ -111,11 +111,34 @@ function createInput(type, manID, placeholder, step, value, readonly) {
                     })
                 }
             });
+        } else {
+            let tick = true;
+            input.addEventListener('input', (e) => {
+                //console.log(e);
+                //getUniqueManId(mandatory);
+                if (e.target.value.length === 1 && tick) {
+                    tick = false;
+                    let form = e.target.parentNode,
+                        curManId = e.target.attributes.manid.value;
+                    let inputs = document.querySelectorAll('input[manid="'+curManId+'"]'),
+                        textPlaceholder = (curManId.replace('new', '') === 'income') ? '+ Описание дохода' : '+ Описание расхода',
+                        numberPlaceholder = (curManId.replace('new', '')  === 'income') ? '+ Сумма дохода' : '+ Сумма расхода';
+
+                    for (let input of inputs) input.setAttribute('manid', getUniqueManId(mandatory));
+                    //console.log(form.length);
+                    form.insertBefore(createInput('text', curManId, textPlaceholder, false,''),
+                                      form[form.length - 2]);
+                    form.insertBefore(createInput('number', curManId, numberPlaceholder, '0.01', ''),
+                                      form[form.length - 2]);
+                } else if (e.target.value.length === 0) {
+                    tick = true;
+                }
+            });
         }
 
         // Обработка нажатий кнопок в инпутах
         input.addEventListener("keypress", (e) => {
-            console.log(e);
+            //console.log(e);
             switch (e.keyCode) {
                 case 13:  // Обработка нажатий Enter
                     if(e.target.attributes.type.value === 'text') {
@@ -130,7 +153,7 @@ function createInput(type, manID, placeholder, step, value, readonly) {
                             }
                         });
                     } else {
-                        console.log(123);
+                        console.log(3333);
                     }
                     break;
             }
@@ -157,6 +180,17 @@ function getAllTypesMandatory(arr) {
     return types;
 }
 
+function getUniqueManId(arr) {
+    let manID = [];
+    for (let i = 0; i < arr.length; i++){
+        manID.push(arr[i].manID);
+    }
+    for (let i = 1; i < 99999; i++) {
+        if (!manID.includes(i)) return i;
+    }
+    return console.error('ERROR: getUniqueManId не нашел уникальный manID');
+}
+
 function calculateTotalAmount(type) {
     let sum = 0,
         input = document.querySelector('[type="number"][manid="' + type + '"]');
@@ -167,3 +201,14 @@ function calculateTotalAmount(type) {
 }
 
 drawMandatory();
+
+// let test = document.querySelector('input[manid="2"]');
+// test.focus(1);
+// console.log(test);
+
+
+let mainParent = document.getElementsByClassName('main-parent')[0];
+
+mainParent.addEventListener('click', (e) => {
+    console.log(e);
+});

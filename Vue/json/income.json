@@ -1,0 +1,14 @@
+[
+  {
+    "manID": 1,
+    "type": "income",
+    "name": "Зарплата",
+    "value": 55000
+  },
+  {
+    "manID": 2,
+    "type": "income",
+    "name": "Родители на ДР",
+    "value": 5000
+  }
+]

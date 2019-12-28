@@ -1,0 +1,20 @@
+[
+  {
+    "manID": 3,
+    "type": "expenses",
+    "name": "Аренда",
+    "value": 30000
+  },
+  {
+    "manID": 4,
+    "type": "expenses",
+    "name": "ЖКХ",
+    "value": 2000
+  },
+  {
+    "manID": 5,
+    "type": "expenses",
+    "name": "Транспорт",
+    "value": 3000
+  }
+]

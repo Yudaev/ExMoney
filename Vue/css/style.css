@@ -1,0 +1,317 @@
+/*
+palette
+394a6d
+3c9d9b
+52de97
+c0ffb3
+https://colorhunt.co/palette/157179
+ */
+
+* {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    min-width: 320px;
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    background: #394a6d;
+    box-sizing: border-box;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+#menu {
+    display: none;
+}
+
+#menu:checked ~ .nav {
+    visibility: visible;
+}
+
+.nav {
+    visibility: hidden;
+}
+
+label[for="menu"] {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 34px;
+    height: 20px;
+    right: 10px;
+    cursor: pointer;
+    background: transparent;
+    border-top: 4px solid #52de97;
+    border-bottom: 4px solid #52de97;
+}
+
+label[for="menu"]::before,
+label[for="menu"]::after {
+    content: "";
+    position: absolute;
+    width: 34px;
+    height: 4px;
+    top: 8px;
+    background: rgb(82, 222, 151);
+    transition: transform 0.5s cubic-bezier(0.77, 0.8, 0.05, 1) 0s;
+}
+
+
+.logo{
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    color: #52de97;
+    font-weight: 900;
+    font-size: 24px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.logo a:before{
+    content: "ExM";
+}
+
+header form {
+    width: 200px;
+    position: relative;
+}
+
+header form label {
+    position: absolute;
+    font-size: 40px;
+    top: -6px;
+    left: 5px;
+    color: #999;
+}
+
+::-webkit-input-placeholder {color:#999;}
+::-moz-placeholder          {color:#999;}/* Firefox 19+ */
+:-moz-placeholder           {color:#999;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#999;}
+
+header form input:focus ~ label {
+    color: #394a6d;
+}
+
+header input[type="number"]{
+    width: 100%;
+    height: 40px;
+    outline: none;
+    background-color: #fff;
+    border: none;
+    box-sizing: border-box;
+    padding: 0 50px 0 18px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #394a6d;
+}
+
+header input[type="button"] {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
+    font-weight: 900;
+    background: #52de97;
+    border: none;
+    outline: none;
+    right: 0;
+    color: #394a6d;
+    cursor: pointer;
+}
+
+header input[type="button"]:hover {
+    background: #c0ffb3;
+}
+
+/*#86C232*/
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
+.nav {
+    list-style-type: none;
+    display: flex;
+    color: #fff;
+    padding: 0;
+}
+
+.nav li {
+    position: relative;
+    padding: 0 15px;
+    border-right: 1px solid white;
+}
+
+.nav li:first-of-type{
+    padding: 0 15px 0 0;
+}
+
+.nav li:last-of-type{
+    padding: 0 0 0 15px;
+    border: none;
+}
+
+.nav a {
+    color: #52de97;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav a:hover{
+    text-decoration: underline;
+}
+
+.add-money{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.add-money input[type="text"] {
+    width: 50%;
+    height: 40px;
+    outline: none;
+}
+
+section {
+    margin-top: 10px;
+    color: #394a6d;
+}
+
+.mandatory {
+    display: flex;
+    flex-direction: column;
+}
+
+.income,
+.expenses {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mandatory form {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.mandatory form input {
+    width: 49%;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #394a6d;
+    border-bottom: 1px solid #394a6d;
+    color: #394a6d;
+    font-size: 16px;
+    margin: 0 0 4px 0;
+}
+
+.mandatory table {
+    margin-top: 10px;
+    width: 95%;
+}
+/*
+.mandatory tr:hover,
+.mandatory tr:hover input,
+.mandatory form:hover input {
+    background: #c0ffb3;
+}*/
+
+.mandatory td {
+    width: 50%;
+    height: 30px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #394a6d;
+    border-bottom: 1px solid #394a6d;
+}
+
+.mandatory h3 {
+    width: 100%;
+    text-align: center;
+}
+
+.mandatory input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+
+@media (min-width: 576px) {
+    .container {
+        width: 100%;
+    }
+
+    .logo a:before{
+        content: "ExM ->";
+    }
+
+    label[for="menu"] {
+        display: none;
+    }
+
+    .nav {
+        visibility: visible;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .logo a:before{
+        content: "Ex Money ->";
+    }
+
+    .mandatory {
+        flex-direction: row;
+    }
+
+    .income,
+    .expenses {
+        width: 50%;
+    }
+
+    .income {
+        border-right: 2px solid #394a6d;
+    }
+
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1200px;
+    }
+}
+
